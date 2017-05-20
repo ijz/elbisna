@@ -28,8 +28,6 @@ int fork_and_run(const char *file, char **argv) {
         FAIL_RETURN("fork", -1);
     if (0 == chpid) {
         // child process
-        // pretend it takes a while
-        sleep(5);
         if (0 > execvp(file, argv))
             FAIL__EXIT("execvp");
     } else {

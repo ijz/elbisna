@@ -8,11 +8,7 @@
 #include <sys/types.h>
 #include <unistd.h>
 
-#define FM_EMPTY {NULL, 0, 0, -1}
-#define PAGE_SIZE getpagesize()
-#define FM_PAGE_ALIGN_MASK (~(PAGE_SIZE - 1))
-#define FM_PAGE_ALIGN(x) (((x) + PAGE_SIZE - 1) & FM_PAGE_ALIGN_MASK)
-
+#define FM_EMPTY { NULL, 0, 0, -1 }
 
 struct file_mapper {
     char *mem;
