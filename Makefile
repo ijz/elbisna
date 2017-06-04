@@ -15,9 +15,12 @@ process_runner:
 host_filter:
 	$(CC) $(OPTIONS) $(HEADERS) -o host_filter -lm src/host_filter.c src/file_mapper.c vendor/cJSON.c
 
+vmbuf_test: src/vmbuf.c src/vmbuf_test.c
+	$(CC) $(OPTIONS) $(HEADERS) -o vmbuf_test src/vmbuf_test.c src/vmbuf.c
 .PHONY: clean
 clean:
 	rm -f epoll_playground
 	rm -f test.fifo
 	rm -f process_runner
 	rm -f host_filter
+	rm -f vmbuf_test
