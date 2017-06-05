@@ -1,4 +1,5 @@
 #include "file_mapper.h"
+#include "vmbuf.h"
 
 inline int fm_init_ro(struct file_mapper *fm, const char *path) {
     return fm_init(fm, path, O_RDONLY | O_CLOEXEC, PROT_READ, MAP_SHARED);
@@ -22,7 +23,7 @@ int fm_init_fd(struct file_mapper *fm, int fd, int mmap_prot, int mmap_flags) {
     }
     fm->fd = fd;
     fm->size = st.st_size;
-    fm->capacity = FM_PAGE_ALIGN(st.st_size);
+    fm->capacity = VMBUF_PAGE_ALIGN(st.st_size);
     if (MAP_FAILED == (fm->mem = (char *)mmap(NULL, fm->capacity, mmap_prot, mmap_flags, fd, 0))) {
         perror("mmap");
         return -1;
